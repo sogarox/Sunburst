@@ -1,5 +1,5 @@
 <?php
-require "class.php";
+require "login.php";
 ?>
 
 <!DOCTYPE html>
