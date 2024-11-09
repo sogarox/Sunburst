@@ -64,16 +64,5 @@ class Usuario {
     
     }
 
-// Uso del patrón Builder
-
-/*class UsuarioDirector{
-    $usuario = (new UsuarioBuilder())
-    ->setNombre($nombre)
-    ->setUuid($uuid)
-    ->setEmail($email)
-    ->setTelefono($telefono)
-    ->setDireccion($direccion)
-    ->build();*/
-
 
 ?>

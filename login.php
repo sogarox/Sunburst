@@ -1,5 +1,26 @@
 <?php
 require "class.php";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+     // collect value of input field
+     $nombre = $_POST['nombre'];
+     $uuid = $_POST['uuid'];
+     $email = $_POST['email'];
+     $telefono = $_POST['telefono'];
+     $direccion = $_POST['direccion'];
+     $usuario = (new UsuarioBuilder())
+    ->setNombre( $nombre )
+    ->setUuid( $uuid )
+    ->setEmail( $email )
+    ->setTelefono(telefono: $telefono )
+    ->setDireccion( $direccion )
+    ->build();
+    header("Location: lobby.php");
+    exit(); 
+}
+    
+//echo $usuario;
+     
+
 ?>
 
 <!DOCTYPE html>
@@ -117,7 +138,7 @@ input[type="submit"]:focus {
 </head>
 <body>
 
-<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" >
     <h2>Registro de Usuario</h2>
 
     <div class="input-icon">
@@ -144,31 +165,14 @@ input[type="submit"]:focus {
         <i class="fas fa-home"></i>
         <input type="text" name="direccion" placeholder="Dirección" required>
     </div>
-
+    
     <input type="submit" value="Enviar">
+    
+    <br><br>
+    <a href="inicio.html" class="Inicio">Volver</a>
 </form>
 
-<?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-     // collect value of input field
-     $nombre = $_POST['nombre'];
-     $uuid = $_POST['uuid'];
-     $email = $_POST['email'];
-     $telefono = $_POST['telefono'];
-     $direccion = $_POST['direccion'];
-     $usuario = (new UsuarioBuilder())
-    ->setNombre( $nombre )
-    ->setUuid( $uuid )
-    ->setEmail( $email )
-    ->setTelefono(telefono: $telefono )
-    ->setDireccion( $direccion )
-    ->build();
 
-echo $usuario;
-     
-}
-
-?>
 
 </body>
 </html>
