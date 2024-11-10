@@ -104,13 +104,13 @@ h2 {
     background-color: #fff; /* Fondo blanco al enfocarse */
 }
 
-/* Botón de envío */
-input[type="submit"] {
+/* Estilo compartido para botón y enlace */
+.button-style {
     width: 100%;
     padding: 0.9em;
     border: none;
     border-radius: 12px;
-    background-color: #3f51b5; /* Azul suave para el botón */
+    text-decoration: none;
     color: #fff;
     font-size: 1em;
     font-weight: bold;
@@ -118,19 +118,29 @@ input[type="submit"] {
     transition: background-color 0.3s, box-shadow 0.3s, transform 0.2s ease-in-out;
     text-transform: uppercase;
     box-shadow: 0 4px 8px rgba(63, 81, 181, 0.3); /* Sombra sutil */
+    box-sizing: border-box;
+    display: block;
+    margin: 0 auto;
+    background-color: #3f51b5; /* Azul suave para el botón */
 }
 
-/* Efecto hover en el botón de envío */
-input[type="submit"]:hover {
+/* Hover en el botón y enlace */
+.button-style:hover {
     background-color: #303f9f; /* Azul más oscuro al pasar el mouse */
     box-shadow: 0 4px 10px rgba(63, 81, 181, 0.5); /* Sombra más profunda */
     transform: translateY(-2px); /* Efecto de elevación */
 }
 
-/* Efecto focus para el botón */
-input[type="submit"]:focus {
+/* Focus en el botón y enlace */
+.button-style:focus {
     outline: none;
-    box-shadow: 0 0 8px rgba(63, 81, 181, 0.6); /* Resalta el botón cuando se hace foco */
+    box-shadow: 0 0 8px rgba(63, 81, 181, 0.7), 0 4px 8px rgba(63, 81, 181, 0.3); /* Sombra con un brillo adicional */
+    transform: translateY(-2px); /* Mantiene la elevación */
+    background-color: #3949ab; /* Color ligeramente diferente para indicar foco */
+}
+
+.button-text-container {
+    text-align: center;
 }
 
 
@@ -166,10 +176,11 @@ input[type="submit"]:focus {
         <input type="text" name="direccion" placeholder="Dirección" required>
     </div>
     
-    <input type="submit" value="Enviar">
-    
-    <br><br>
-    <a href="inicio.html" class="Inicio">Volver</a>
+    <input type="submit" class="button-style" value="Enviar">
+    <div class="button-text-container">
+        <br><br>
+        <a href="inicio.html" class="button-style">Volver</a>
+    </div>
 </form>
 
 
