@@ -61,6 +61,12 @@
             background-color: #555;
         }
 
+        .sidebar .ahorro-menu a {
+            padding-left: 30px;
+        }
+        .sidebar .consumo-menu a {
+            padding-left: 30px;
+        }
         .sidebar .profile-menu a {
             padding-left: 30px;
         }
@@ -84,11 +90,15 @@
             margin-top: 0;
         }
 
-        .profile-settings {
+        .profile-settings,
+        .consumo-settings,
+        .ahorro-settings {
             display: none;
         }
 
-        .profile-settings.active {
+        .profile-settings.active,
+        .consumo-settings.active,
+        .ahorro-settings.active {
             display: block;
         }
     </style>
@@ -105,16 +115,28 @@
 
     <!-- Sidebar a la izquierda -->
     <div class="sidebar">
-        <a href="#">Opción 1</a>
-        <a href="#">Opción 2</a>
-        <a href="#">Opción 3</a>
-        <div class="profile-menu">
-            <a href="#" id="profile-toggle">Mi perfil</a>
-            <div class="profile-settings" id="profile-settings">
-                <a href="#">Modificar perfil</a>
-                <a href="inicio.html">Cerrar sesión</a>
-            </div>
+    <div class="profile-menu">
+        <a href="#" id="profile-toggle">Mi perfil</a>
+        <div class="profile-settings" id="profile-settings">
+            <a href="#">Modificar perfil</a>
+            <a href="inicio.html">Cerrar sesión</a>
         </div>
+    </div>
+    <div class="consumo-menu">
+        <a href="#" id="consumo-toggle">Monitorear Consumo</a>
+        <div class="consumo-settings" id="consumo-settings">
+        <a href="#">Realizar encuesta de monitoreo</a>
+            <a href="#">Ver estadísticas</a>
+            
+        </div>
+    </div>
+    <div class="ahorro-menu">
+        <a href="#" id="ahorro-toggle">Opciones para ahorrar energía</a>
+        <div class="ahorro-settings" id="ahorro-settings">
+            <a href="#">Consejos</a>
+            <a href="#">Tiendas de páneles y electrodomesticos de ahorro</a>
+        </div>
+    </div>
     </div>
 
     <!-- Contenido principal -->
@@ -128,19 +150,22 @@
 
     <!-- Script para la funcionalidad -->
     <script>
-        // Funcionalidad para mostrar/ocultar el submenú de "Mi perfil"
-        const profileLink = document.getElementById('profile-link');
-        const profileToggle = document.getElementById('profile-toggle');
-        const profileSettings = document.getElementById('profile-settings');
+    // Función para manejar el colapso/despliegue de los menús
+    function toggleMenu(toggleId, settingsId) {
+        const toggleElement = document.getElementById(toggleId);
+        const settingsElement = document.getElementById(settingsId);
 
-        profileLink.addEventListener('click', function() {
-            alert('Ir a mi perfil');
+        toggleElement.addEventListener('click', function (event) {
+            event.preventDefault(); // Evita el comportamiento por defecto del enlace
+            settingsElement.classList.toggle('active');
         });
+    }
 
-        profileToggle.addEventListener('click', function() {
-            profileSettings.classList.toggle('active');
-        });
-    </script>
+    // Llamar a la función para cada menú
+    toggleMenu('profile-toggle', 'profile-settings');
+    toggleMenu('consumo-toggle', 'consumo-settings');
+    toggleMenu('ahorro-toggle', 'ahorro-settings');
+</script>
 
 </body>
 </html>

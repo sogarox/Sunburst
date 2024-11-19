@@ -4,9 +4,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
      // collect value of input field
      $nombre = $_POST['nombre'];
      $contrasena = $_POST['contrasena'];
+     $email = $_POST['email'];
+     $telefono = $_POST['telefono'];
+     $direccion = $_POST['direccion'];
      $usuario = (new UsuarioBuilder())
     ->setNombre( $nombre )
     ->setContrasena( $contrasena )
+    ->setEmail( $email )
+    ->setTelefono(telefono: $telefono )
+    ->setDireccion( $direccion )
     ->build();
     header("Location: lobby.php");
     exit(); 
@@ -153,6 +159,21 @@ h2 {
     <div class="input-icon">
         <i class="fas fa-id-badge"></i>
         <input type="text" name="contrasena" placeholder="Contrasena" required>
+    </div>
+
+    <div class="input-icon">
+        <i class="fas fa-envelope"></i>
+        <input type="text" name="email" placeholder="E-mail" required>
+    </div>
+
+    <div class="input-icon">
+        <i class="fas fa-phone"></i>
+        <input type="text" name="telefono" placeholder="Teléfono" required>
+    </div>
+
+    <div class="input-icon">
+        <i class="fas fa-home"></i>
+        <input type="text" name="direccion" placeholder="Dirección" required>
     </div>
     
     <input type="submit" class="button-style" value="Enviar">

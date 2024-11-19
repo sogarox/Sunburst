@@ -1,16 +1,16 @@
 <?php
 class Usuario {
-    public $nombre, $uuid, $email, $telefono, $direccion;
+    public $nombre, $contrasena, $email, $telefono, $direccion;
 
     // Constructor privado para evitar creación directa
     public function __toString() {
-        $salida = $this->nombre. "<br>" .$this->uuid . "<br>" .$this->email. "<br>" .$this->telefono. "<br>". $this->direccion;
+        $salida = $this->nombre. "<br>" .$this->contrasena . "<br>" .$this->email. "<br>" .$this->telefono. "<br>". $this->direccion;
         return $salida;
      }
 
     // Métodos getter
     public function getNombre() { return $this->nombre; }
-    public function getUuid() { return $this->uuid; }
+    public function getContrasena() { return $this->contrasena; }
     public function getEmail() { return $this->email; }
     public function getTelefono() { return $this->telefono; }
     public function getDireccion() { return $this->direccion; }
@@ -19,7 +19,7 @@ class Usuario {
     // Clase interna Builder
     class UsuarioBuilder {
         private $nombre;
-        private $UUID;
+        private $Contrasena;
         private $email;
         private $telefono;
         private $direccion;
@@ -31,8 +31,8 @@ class Usuario {
         }
 
         // Métodos para otros atributos
-        public function setUuid($UUID) {
-            $this->UUID = $UUID;
+        public function setContrasena($contrasena) {
+            $this->Contrasena = $contrasena;
             return $this;
         }
 
@@ -54,7 +54,7 @@ class Usuario {
         public function build() {
             $usuario = new Usuario();
             $usuario->nombre = $this->nombre;
-            $usuario->uuid = $this->UUID;
+            $usuario->contrasena = $this->Contrasena;
             $usuario->email = $this->email;
             $usuario->telefono = $this->telefono;
             $usuario->direccion = $this->direccion;
