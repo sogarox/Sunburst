@@ -63,6 +63,7 @@ class Usuario {
 
     
     }
-
-
+    Class Encuesta{
+        public $valorinicial, $ds, $email, $telefono, $direccion;
+    }
 ?>
