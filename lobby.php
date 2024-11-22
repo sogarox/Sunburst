@@ -140,14 +140,31 @@
     </div>
 
     <!-- Contenido principal -->
-    <div class="main-content">
-        <!-- Estadísticas -->
-        <div class="statistics">
-            <h2>Estadísticas</h2>
-            <p>Aquí van las estadísticas. Puedes modificar esta sección según lo necesites.</p>
-        </div>
-    </div>
+<div id="main-content" class="main-content">
+    <!-- Aquí se cargará el contenido dinámico -->
+</div>
 
+<!-- Categorías y subcategorías -->
+<div class="menu">
+    <button class="menu-item" data-content="profile">Mi perfil</button>
+    <button class="menu-item" data-content="consumo">Monitorear Consumo</button>
+    <button class="menu-item" data-content="ahorro">Opciones para ahorrar energía</button>
+</div>
+
+<div class="submenu" id="profile" style="display: none;">
+    <button class="submenu-item" data-content="profile-modificar">Modificar Perfil</button>
+    <button class="submenu-item" data-content="profile-cerrar">Cerrar Sesión</button>
+</div>
+
+<div class="submenu" id="consumo" style="display: none;">
+    <button class="submenu-item" data-content="consumo-encuesta">Realizar Encuesta</button>
+    <button class="submenu-item" data-content="consumo-estadisticas">Ver Estadísticas</button>
+</div>
+
+<div class="submenu" id="ahorro" style="display: none;">
+    <button class="submenu-item" data-content="ahorro-consejos">Consejos</button>
+    <button class="submenu-item" data-content="ahorro-tiendas">Tiendas de Ahorro</button>
+</div>
     <!-- Script para la funcionalidad -->
     <script>
     // Función para manejar el colapso/despliegue de los menús
@@ -165,6 +182,92 @@
     toggleMenu('profile-toggle', 'profile-settings');
     toggleMenu('consumo-toggle', 'consumo-settings');
     toggleMenu('ahorro-toggle', 'ahorro-settings');
+    
+    const mainContent = document.getElementById('main-content');
+
+// Función para actualizar contenido dinámicamente
+function updateContent(content) {
+    mainContent.innerHTML = content;  // Actualiza con contenido HTML
+}
+
+// Mostrar/ocultar submenús
+document.querySelectorAll('.menu-item').forEach(button => {
+    button.addEventListener('click', function () {
+        // Ocultar todos los submenús
+        document.querySelectorAll('.submenu').forEach(submenu => submenu.style.display = 'none');
+
+        // Mostrar el submenú correspondiente
+        const submenuId = this.dataset.content;
+        const submenu = document.getElementById(submenuId);
+        if (submenu) submenu.style.display = 'block';
+    });
+});
+
+// Manejar clics en las subcategorías
+document.querySelectorAll('.submenu-item').forEach(button => {
+    button.addEventListener('click', function () {
+        const contentId = this.dataset.content;
+
+        // Actualizar el contenido principal basado en el botón de subcategoría
+        if (contentId === 'profile-modificar') {
+            updateContent(`
+                <h2>Modificar Perfil</h2>
+                <form>
+                    <label for="name">Nombre:</label>
+                    <input type="text" id="name" placeholder="Ingresa tu nombre">
+                    <br>
+                    <label for="email">Correo:</label>
+                    <input type="email" id="email" placeholder="Ingresa tu correo">
+                    <br>
+                    <button type="submit">Guardar cambios</button>
+                </form>
+            `);
+        } else if (contentId === 'profile-cerrar') {
+            updateContent(`
+                <h2>Cerrar Sesión</h2>
+                <p>¿Seguro que deseas cerrar sesión?</p>
+                <button>Confirmar</button>
+            `);
+        } else if (contentId === 'consumo-encuesta') {
+            updateContent(`
+                <h2>Encuesta de Consumo</h2>
+                <form>
+                    <label for="consumo">¿Cuánto consumes al día?</label>
+                    <input type="number" id="consumo" placeholder="Consumo en kWh">
+                    <br>
+                    <button type="submit">Enviar</button>
+                </form>
+            `);
+        } else if (contentId === 'consumo-estadisticas') {
+            updateContent(`
+                <h2>Estadísticas de Consumo</h2>
+                <p>Aquí se muestran las estadísticas de tu consumo de energía en el último mes.</p>
+                <div>
+                    <h3>Consumo total: 350 kWh</h3>
+                    <p>Promedio diario: 11.67 kWh</p>
+                </div>
+            `);
+        } else if (contentId === 'ahorro-consejos') {
+            updateContent(`
+                <h2>Consejos para Ahorrar Energía</h2>
+                <ul>
+                    <li>Apaga los electrodomésticos cuando no los estés usando.</li>
+                    <li>Usa bombillas LED para reducir el consumo.</li>
+                    <li>Reemplaza tus electrodomésticos viejos por versiones más eficientes.</li>
+                </ul>
+            `);
+        } else if (contentId === 'ahorro-tiendas') {
+            updateContent(`
+                <h2>Tiendas de Ahorro</h2>
+                <p>Estas son algunas tiendas recomendadas para adquirir productos de ahorro energético:</p>
+                <ul>
+                    <li><a href="#">Tienda A: Productos ecológicos</a></li>
+                    <li><a href="#">Tienda B: Paneles solares</a></li>
+                </ul>
+            `);
+        }
+    });
+});
 </script>
 
 </body>
