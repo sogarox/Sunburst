@@ -125,7 +125,7 @@
     <div class="consumo-menu">
         <a href="#" id="consumo-toggle">Monitorear Consumo</a>
         <div class="consumo-settings" id="consumo-settings">
-        <a href="#">Realizar encuesta de monitoreo</a>
+        <a href="index.php">Realizar encuesta de monitoreo</a>
             <a href="#">Ver estadísticas</a>
             
         </div>

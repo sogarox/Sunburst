@@ -1,21 +1,43 @@
 <?php
 require "class.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "userdb";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
      // collect value of input field
      $nombre = $_POST['nombre'];
-     $contrasena = $_POST['contrasena'];
+     $contrasena = password_hash($_POST['contrasena'], PASSWORD_DEFAULT);
      $email = $_POST['email'];
      $telefono = $_POST['telefono'];
      $direccion = $_POST['direccion'];
-     $usuario = (new UsuarioBuilder())
-    ->setNombre( $nombre )
-    ->setContrasena( $contrasena )
-    ->setEmail( $email )
-    ->setTelefono(telefono: $telefono )
-    ->setDireccion( $direccion )
-    ->build();
+
+     if (empty($nombre) || empty($contrasena) || empty($email) || empty($telefono) || empty($direccion)) {
+        header("Location: login.php");
+        exit();
+    }
+    //insert values into database
+    $sql = "INSERT INTO personas (nombre, contrasena, email, telefono, direccion)
+VALUES ('$nombre', '$contrasena', '$email', '$telefono', '$direccion')";
+
+if ($conn->query($sql) === TRUE) {
+    // Redirigir después de éxito
     header("Location: lobby.php");
-    exit(); 
+    exit();
+} else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+}
+
+$conn->close();
 }
     
 //echo $usuario;

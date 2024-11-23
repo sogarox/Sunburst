@@ -1,16 +1,51 @@
 <?php
 require "class.php";
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-     // collect value of input field
-     $nombre = $_POST['nombre'];
-     $contrasena = $_POST['contrasena'];
-     $usuario = (new UsuarioBuilder())
-    ->setNombre( $nombre )
-    ->setContrasena( $contrasena )
-    ->build();
-    header("Location: lobby.php");
-    exit(); 
+    
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "userdb";
+
+    // Crear conexión
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    if ($conn->connect_error) {
+        die("Conexión fallida: " . $conn->connect_error);
+    }
+// collect value of input field
+$nombre = $_POST['nombre'];
+$contrasena = $_POST['contrasena'];
+
+if (empty($nombre) || empty($contrasena)) {
+    header("Location: login.php");
+    exit();
 }
+    // Consultar si el usuario existe
+    $sql = "SELECT * FROM personas WHERE nombre = '$nombre'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        // El usuario existe, ahora verificar la contraseña
+        $row = $result->fetch_assoc();
+        if (password_verify($contrasena, $row['contrasena'])) {
+            // Contraseña correcta, redirigir a otra página
+            header("Location: lobby.php");
+            exit();
+        } else {
+            // Contraseña incorrecta
+            header("Location: login.php");
+        exit();
+        }
+    } else {
+        // El usuario no existe
+        header("Location: login.php");
+        exit();
+    }
+
+    $conn->close();
+}
+     
     
 //echo $usuario;
      
@@ -142,7 +177,7 @@ h2 {
 </head>
 <body>
 
-<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" >
+<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
     <h2>Registro de Usuario</h2>
 
     <div class="input-icon">
@@ -152,16 +187,15 @@ h2 {
 
     <div class="input-icon">
         <i class="fas fa-id-badge"></i>
-        <input type="text" name="contrasena" placeholder="Contrasena" required>
+        <input type="password" name="contrasena" placeholder="Contrasena" required>
     </div>
-    
+
     <input type="submit" class="button-style" value="Enviar">
     <div class="button-text-container">
         <br><br>
         <a href="inicio.html" class="button-style">Volver</a>
     </div>
 </form>
-
 
 
 </body>
