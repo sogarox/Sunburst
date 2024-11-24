@@ -133,7 +133,7 @@
     <div class="ahorro-menu">
         <a href="#" id="ahorro-toggle">Opciones para ahorrar energía</a>
         <div class="ahorro-settings" id="ahorro-settings">
-            <a href="#">Consejos</a>
+            <a href="Consejos_cuidado.html">Consejos</a>
             <a href="#">Tiendas de páneles y electrodomesticos de ahorro</a>
         </div>
     </div>

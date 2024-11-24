@@ -94,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <p><strong>Electrodoméstico de mayor consumo:</strong> $electro_consumo</p>
             <p><strong>Uso de la televisión:</strong> $television horas al día</p>
             <p><strong>Uso de la lavadora:</strong> $lavadora veces por semana</p>
-            <a href='inicio.html'>Cerrar sesión</a>
+            <a href='lobby.php'>Volver</a>
         </div>
     </body>
     </html>";
