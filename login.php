@@ -185,7 +185,7 @@ h2 {
 <body>
 
 <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-    <h2>Registro de Usuario</h2>
+    <h2>Iniciar Sesión</h2>
 
     <div class="input-icon">
         <i class="fas fa-user"></i>
