@@ -163,7 +163,7 @@ if (!isset($_SESSION['usuario_id'])) {
     <div class="profile-menu">
         <a href="#" id="profile-toggle">Mi perfil</a>
         <div class="profile-settings" id="profile-settings">
-            <a href="#">Modificar perfil</a>
+            <a href="perfil.php">Ver perfil</a>
             <a href="logout.php">Cerrar sesión</a>
         </div>
     </div>
@@ -171,7 +171,6 @@ if (!isset($_SESSION['usuario_id'])) {
         <a href="#" id="consumo-toggle">Monitorear Consumo</a>
         <div class="consumo-settings" id="consumo-settings">
         <a href="index.php">Realizar encuesta de monitoreo</a>
-            <a href="stats.php">Ver estadísticas</a>
             
         </div>
     </div>
@@ -179,7 +178,7 @@ if (!isset($_SESSION['usuario_id'])) {
         <a href="#" id="ahorro-toggle">Opciones para ahorrar energía</a>
         <div class="ahorro-settings" id="ahorro-settings">
             <a href="Consejos_cuidado.php">Consejos</a>
-            <a href="#">Tiendas de páneles y electrodomesticos de ahorro</a>
+            <a href="tiendas.php">Tiendas de páneles y electrodomesticos de ahorro</a>
         </div>
     </div>
     </div>

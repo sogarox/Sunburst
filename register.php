@@ -6,7 +6,6 @@ if (isset($_SESSION['usuario_id'])) {
     header("Location: lobby.php");
     exit();
 }
-require "class.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $servername = "localhost";
