@@ -13,7 +13,7 @@
             padding: 0;
             display: flex;
             height: 100vh;
-            background-color: #f4f4f9;
+
         }
 
         /* Barra superior con opciones */
@@ -21,6 +21,7 @@
             width: 100%;
             background-color: #333;
             color: white;
+            font-size: 1.1em;
             padding: 10px 20px;
             display: flex;
             justify-content: space-between;
@@ -32,14 +33,17 @@
         }
 
         .navbar a {
-            color: white;
+            background-color: #d2e2c3;
+            color: #333;
+            transition: background-color 0.3s;
             text-decoration: none;
             padding: 10px;
             margin: 0 10px;
         }
 
         .navbar a:hover {
-            background-color: #555;
+            background-color: #c4dba1;
+            color: white;
             border-radius: 5px;
         }
 
@@ -62,6 +66,7 @@
             width: 250px;
             background-color: #222;
             color: white;
+            font-size: 1.1em;
             padding-top: 20px;
             height: 100vh;
             position: fixed;
@@ -71,23 +76,34 @@
 
         .sidebar a {
             display: block;
-            padding: 15px;
+            padding: 12px;
+            border-radius: 3px;
             text-decoration: none;
-            color: white;
-            border-bottom: 1px solid #444;
+            background-color: #d2e2c3;
+            color: #333;
+            transition: background-color 0.3s;
+            border-bottom: 2px solid #76806c;
         }
 
         .sidebar a:hover {
-            background-color: #555;
+            background-color: #c4dba1;
+            color: white;
         }
 
         /* Contenido principal */
         .main-content {
+<<<<<<< HEAD
             margin-left: 250px;
             padding: 20px;
             margin-top: 60px; /* Dejamos espacio para la barra superior */
             width: calc(100% - 250px);
+=======
+            width: 100%;
+>>>>>>> 80e6dd33e12919d189304dd3b199b9c19cddad99
             height: 100%;
+            background-color: #f8fbf3;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         .statistics {
@@ -119,11 +135,44 @@
         .profile-info .modify-btn:hover {
             background-color: #45a049;
         }
+
+        img {
+            max-width: 100%;
+            max-height: 100%;
+            height: auto;
+            width: auto;
+        }
+
+.info-overlay {
+    position: absolute;
+    top: 150px; /* Ajusta según la posición deseada */
+    left: 350px; /* Ajusta según la posición deseada */
+    background-color: rgba(255, 255, 255, 0.85); /* Fondo semi-transparente para mejorar la legibilidad */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 500px; /* Ajusta según la necesidad */
+    color: #333; /* Color del texto acorde a tu diseño */
+}
+
+
     </style>
 </head>
 <body>
+<<<<<<< HEAD
 
     <!-- Barra superior con opciones -->
+=======
+<div class="info-overlay">
+    <h2>Bienvenido al Lobby de Gestión Energética</h2>
+    <p>
+        Aquí encontrarás todas las herramientas necesarias para optimizar y monitorear tu consumo energético.
+        Explora las opciones del menú para acceder a funciones como monitoreo de consumo, estadísticas y consejos de ahorro.
+    </p>
+</div>
+<img src="img/background-lobby.jpg" alt="Logo de la página">
+    <!-- Barra superior -->
+>>>>>>> 80e6dd33e12919d189304dd3b199b9c19cddad99
     <div class="navbar">
         <div>
             <a href="#" id="home-link">Inicio</a>
@@ -148,6 +197,25 @@
         </div>
     </div>
 
+<<<<<<< HEAD
+=======
+
+
+<div class="submenu" id="profile" style="display: none;">
+    <button class="submenu-item" data-content="profile-modificar">Modificar Perfil</button>
+    <button class="submenu-item" data-content="profile-cerrar">Cerrar Sesión</button>
+</div>
+
+<div class="submenu" id="consumo" style="display: none;">
+    <button class="submenu-item" data-content="consumo-encuesta">Realizar Encuesta</button>
+    <button class="submenu-item" data-content="consumo-estadisticas">Ver Estadísticas</button>
+</div>
+
+<div class="submenu" id="ahorro" style="display: none;">
+    <button class="submenu-item" data-content="ahorro-consejos">Consejos</button>
+    <button class="submenu-item" data-content="ahorro-tiendas">Tiendas de Ahorro</button>
+</div>
+>>>>>>> 80e6dd33e12919d189304dd3b199b9c19cddad99
     <!-- Script para la funcionalidad -->
     <script>
         // Elementos del DOM
