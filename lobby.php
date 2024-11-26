@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION['usuario_id'])) {
+    header("Location: login.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -157,21 +164,21 @@
         <a href="#" id="profile-toggle">Mi perfil</a>
         <div class="profile-settings" id="profile-settings">
             <a href="#">Modificar perfil</a>
-            <a href="inicio.html">Cerrar sesión</a>
+            <a href="logout.php">Cerrar sesión</a>
         </div>
     </div>
     <div class="consumo-menu">
         <a href="#" id="consumo-toggle">Monitorear Consumo</a>
         <div class="consumo-settings" id="consumo-settings">
         <a href="index.php">Realizar encuesta de monitoreo</a>
-            <a href="#">Ver estadísticas</a>
+            <a href="stats.php">Ver estadísticas</a>
             
         </div>
     </div>
     <div class="ahorro-menu">
         <a href="#" id="ahorro-toggle">Opciones para ahorrar energía</a>
         <div class="ahorro-settings" id="ahorro-settings">
-            <a href="Consejos_cuidado.html">Consejos</a>
+            <a href="Consejos_cuidado.php">Consejos</a>
             <a href="#">Tiendas de páneles y electrodomesticos de ahorro</a>
         </div>
     </div>

@@ -1,4 +1,11 @@
 <?php
+session_start();
+require "class.php";
+if (isset($_SESSION['usuario_id'])) {
+    // Si ya hay una sesión activa, redirigir al lobby
+    header("Location: lobby.php");
+    exit();
+}
 require "class.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -201,7 +208,7 @@ h2 {
     <input type="submit" class="button-style" value="Enviar">
     <div class="button-text-container">
         <br><br>
-        <a href="inicio.html" class="button-style">Volver</a>
+        <a href="inicio.php" class="button-style">Volver</a>
     </div>
 </form>
 

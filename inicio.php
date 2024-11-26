@@ -1,3 +1,12 @@
+<?php
+session_start();
+if (isset($_SESSION['usuario_id'])) {
+    // Si ya hay una sesión activa, redirigir al lobby
+    header("Location: lobby.php");
+    exit();
+}
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 

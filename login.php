@@ -1,5 +1,11 @@
 <?php
+session_start();
 require "class.php";
+if (isset($_SESSION['usuario_id'])) {
+    // Si ya hay una sesión activa, redirigir al lobby
+    header("Location: lobby.php");
+    exit();
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
@@ -30,6 +36,7 @@ if (empty($nombre) || empty($contrasena)) {
         $row = $result->fetch_assoc();
         if (password_verify($contrasena, $row['contrasena'])) {
             // Contraseña correcta, redirigir a otra página
+            $_SESSION['usuario_id'] = $row['id'];
             header("Location: lobby.php");
             exit();
         } else {
@@ -193,7 +200,7 @@ h2 {
     <input type="submit" class="button-style" value="Enviar">
     <div class="button-text-container">
         <br><br>
-        <a href="inicio.html" class="button-style">Volver</a>
+        <a href="inicio.php" class="button-style">Volver</a>
     </div>
 </form>
 

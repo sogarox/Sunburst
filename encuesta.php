@@ -1,6 +1,22 @@
 <?php
+session_start();
+if (!isset($_SESSION['usuario_id'])) {
+    header("Location: login.php");
+    exit();
+}
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-   
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "userdb";
+
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
     $num_electrodomesticos = isset($_POST['num_electrodomesticos']) ? (int) $_POST['num_electrodomesticos'] : 0;
     $electrodomesticos_seleccionados = isset($_POST['electrodomesticos']) ? $_POST['electrodomesticos'] : [];
     $consumo = isset($_POST['consumo']) ? $_POST['consumo'] : '';
@@ -9,6 +25,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $electro_consumo = isset($_POST['electro_consumo']) ? $_POST['electro_consumo'] : '';
     $television = isset($_POST['television']) ? $_POST['television'] : '';
     $lavadora = isset($_POST['lavadora']) ? $_POST['lavadora'] : '';
+
+    $electrodomesticos_str = implode(', ', $electrodomesticos_seleccionados);
+
+    // Consulta SQL para insertar datos
+    $sql = "INSERT INTO encuesta (id_usuario, num_electrodomesticos, electrodomesticos_seleccionados, consumo, kwh, nivel_consumo, electro_consumo, television, lavadora)
+    VALUES (".$_SESSION['usuario_id'].", $num_electrodomesticos, '$electrodomesticos_str', '$consumo', $kwh, '$nivel_consumo', '$electro_consumo', '$television', '$lavadora')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "Encuesta guardada correctamente";
+    } else {
+        echo "Error: " . $conn->error;
+    }
+
+    $conn->close();
 
     // Diseño HTML con CSS
     echo "
@@ -98,5 +128,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </body>
     </html>";
+    
 }
 ?>
